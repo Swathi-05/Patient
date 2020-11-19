@@ -14,6 +14,12 @@ import com.cg.healthassist.doctorpatient.entity.MedicalStore;
 import com.cg.healthassist.doctorpatient.exception.MedicalStoreNotFoundException;
 import com.cg.healthassist.doctorpatient.serviceImpl.MedicalStoreServiceImpl;
 
+/** This class is for MedicalStore Controller 
+ * 
+ * @author Swathi
+ * 
+ * */
+
 @RestController
 @RequestMapping("/MedicalStore")
 

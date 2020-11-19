@@ -26,6 +26,12 @@ import com.cg.healthassist.doctorpatient.serviceImpl.MedicineServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/** This class is for Medicine controller Test
+ * 
+ * @author Swathi
+ * 
+ * */
+
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = MedicineControl.class)
 class MedicineControlTest {
@@ -37,6 +43,8 @@ class MedicineControlTest {
 	    @MockBean
 	    private MedicineServiceImpl medicineService;
 
+	    /** This method is to test add Medicine in the Controller class */
+	    
 	@Test
 	void testAddMedicine() throws Exception {
 		String URI = "/Medicine/addMedicine";
@@ -56,6 +64,8 @@ class MedicineControlTest {
 	}
 
 
+	  /** This method is to test cancel Medicine in the Controller class */
+    
     @Test
     public void testremoveMedicineById() throws Exception{
         String URI = "/Medicine/DeleteMedicineById/{MedicineId}";
@@ -73,6 +83,8 @@ class MedicineControlTest {
 	    //Assert.assertNotEquals(HttpStatus.OK.value(), mockHttpServletResponse.getStatus());
     }
 
+    /** This method is to test update Medicine in the Controller class */
+    
     @Test
     public void testUpdateMedicine() throws Exception{
 
@@ -89,6 +101,9 @@ class MedicineControlTest {
         String jsonOutput = mockHttpServletResponse.getContentAsString();
         assertNotNull(jsonOutput);
     }
+    
+    /** This method is to test get Medicine in the Controller class */
+    
 	@Test
    public void testGetMedicineById() throws Exception{
        String URI= "/Medicine/getMedicineById/{MedicineId}";
@@ -106,7 +121,8 @@ class MedicineControlTest {
        Assert.assertEquals(HttpStatus.OK.value(), mockHttpServletResponse.getStatus());
    }
 
-
+	  /** This method is to test getAll Medicine in the Controller class */
+    
 	@Test
 	void testGetAllMedicines() throws Exception {
 		String URI = "/Medicine/getAllMedicines";

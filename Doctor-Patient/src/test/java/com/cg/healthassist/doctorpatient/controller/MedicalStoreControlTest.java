@@ -26,6 +26,13 @@ import com.cg.healthassist.doctorpatient.serviceImpl.MedicalStoreServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+
+/** This class is for MedicalStore controller Test
+ * 
+ * @author Swathi
+ * 
+ * */
+
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = MedicalStoreControl.class)
 class MedicalStoreControlTest {

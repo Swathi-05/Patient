@@ -14,6 +14,12 @@ import com.cg.healthassist.doctorpatient.entity.Doctor;
 import com.cg.healthassist.doctorpatient.exception.DoctorNotFoundException;
 import com.cg.healthassist.doctorpatient.serviceImpl.DoctorServiceImpl;
 
+/** This class is for Doctor Controller 
+ * 
+ * @author Swathi
+ * 
+ * */
+
 @RestController
 @RequestMapping("/Doctor")
 public class DoctorControl {

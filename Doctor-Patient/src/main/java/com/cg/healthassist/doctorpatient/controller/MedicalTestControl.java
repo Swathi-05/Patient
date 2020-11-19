@@ -14,6 +14,12 @@ import com.cg.healthassist.doctorpatient.entity.MedicalTest;
 import com.cg.healthassist.doctorpatient.exception.MedicalTestNotFoundException;
 import com.cg.healthassist.doctorpatient.serviceImpl.MedicalTestServiceImpl;
 
+/** This class is for MedicalTest Controller 
+ * 
+ * @author Swathi
+ * 
+ * */
+
 @RestController
 @RequestMapping("/MedicalTest")
 
