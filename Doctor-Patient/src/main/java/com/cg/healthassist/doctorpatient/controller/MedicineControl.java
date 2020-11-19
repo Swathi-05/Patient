@@ -16,6 +16,12 @@ import com.cg.healthassist.doctorpatient.entity.Medicine;
 import com.cg.healthassist.doctorpatient.exception.OrderNotFoundException;
 import com.cg.healthassist.doctorpatient.serviceImpl.MedicineServiceImpl;
 
+/** This class is for Medicine Controller 
+ * 
+ * @author Swathi
+ * 
+ * */
+
 @RestController
 @RequestMapping("/Medicine")
 

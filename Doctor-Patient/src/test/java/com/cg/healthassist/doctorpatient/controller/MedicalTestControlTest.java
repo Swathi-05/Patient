@@ -25,6 +25,11 @@ import com.cg.healthassist.doctorpatient.serviceImpl.MedicalTestServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/** This class is for MedicalTest controller Test
+ * 
+ * @author Swathi
+ * 
+ * */
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = MedicalTestControl.class)
 class MedicalTestControlTest {
@@ -36,6 +41,8 @@ class MedicalTestControlTest {
 	    @MockBean
 	    private MedicalTestServiceImpl medicalTestService;
 
+	    /** This method is to test add MedicalTest in the Controller class */
+	    
 	@Test
 	void testAddMedicalTest() throws Exception {
 		String URI = "/MedicalTest/addMedicalTest";
@@ -54,6 +61,8 @@ class MedicalTestControlTest {
       Assert.assertEquals(HttpStatus.OK.value(), mockHttpServletResponse.getStatus());
 	}
 
+	/** This method is to test get MedicalTest in the Controller class */
+	
 	@Test
   public void testGetMedicalTestById() throws Exception{
       String URI= "/MedicalTest/getMedicalTestById/{TestId}";
@@ -72,6 +81,7 @@ class MedicalTestControlTest {
       
   }
 
+	/** This method is to test getAll MedicalTest in the Controller class */
 
 	@Test
 	void testGetAllMedicalTests() throws Exception {

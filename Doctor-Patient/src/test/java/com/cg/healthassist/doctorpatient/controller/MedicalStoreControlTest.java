@@ -36,6 +36,8 @@ class MedicalStoreControlTest {
 	    @MockBean
 	    private MedicalStoreServiceImpl medicalStoreService;
 
+	    /** This method is to test add MedicalStore in the Controller class */
+	    
 	@Test
 	void testAddMedicalStore() throws Exception {
 		String URI = "/MedicalStore/addMedicalStore";
@@ -54,6 +56,8 @@ class MedicalStoreControlTest {
        Assert.assertEquals(HttpStatus.OK.value(), mockHttpServletResponse.getStatus());
 	}
 
+	 /** This method is to test get MedicalStore in the Controller class */
+	
 	@Test
    public void testGetMedicalStoreById() throws Exception{
        String URI= "/MedicalStore/getMedicalStoreById/{StoreId}";
@@ -72,6 +76,7 @@ class MedicalStoreControlTest {
        
    }
 
+	/** This method is to test getAll MedicalStore in the Controller class */
 
 	@Test
 	void testGetAllMedicalStores() throws Exception {

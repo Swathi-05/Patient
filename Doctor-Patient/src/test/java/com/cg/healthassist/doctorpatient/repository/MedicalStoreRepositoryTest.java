@@ -1,7 +1,6 @@
 package com.cg.healthassist.doctorpatient.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
@@ -17,6 +16,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.cg.healthassist.doctorpatient.entity.MedicalStore;
 
+    /** This class is for MedicalStore Repository Test
+     * @author Swathi
+     * 
+     * */
+
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace=Replace.NONE)
@@ -28,13 +32,14 @@ class MedicalStoreRepositoryTest {
 	    @Autowired
 	    private TestEntityManager testEntityManager;
 
+	    /** This method is to test add MedicalStore in the repository class */
+	    
 	    @Test
 	    public void testAddMedicalStore() throws Exception{
 	    	MedicalStore medicalStore = getMedicalStore();
 	    	MedicalStore saveInDb = testEntityManager.persist(medicalStore);
-	    	MedicalStore getInDb = medicalStoreRepository.findById(medicalStore.getStoreId()).get();
-		       assertNotNull(getInDb);
-	    	//assertThat(getInDb).isEqualTo(saveInDb);
+	    	MedicalStore getInDb = medicalStoreRepository.findById(saveInDb.getStoreId()).get();
+		       assertThat(getInDb).isEqualTo(saveInDb);
 		    }
 		
 	    private MedicalStore getMedicalStore() {
@@ -45,9 +50,10 @@ class MedicalStoreRepositoryTest {
 			return(medicalStore);
 		}
 
-
+	    /** This method is to test  get MedicalStore in repository class**/
+	    
 	    @Test
-	    void testGetStorerById() throws Exception{
+	    void testGetStoreById() throws Exception{
 	    	 MedicalStore medicalStore = new MedicalStore();
 	 		medicalStore.setStoreId(584);
 	 		medicalStore.setStoreName("Apollo Pharmacy");
@@ -58,6 +64,8 @@ class MedicalStoreRepositoryTest {
 	        assertThat(getInDb).isEqualTo(saveInDb);
 	    }
 
+	    /** This method is to test  getAll MedicalStore in repository class**/
+	    
 	    @Test
 	     void testGetAllMedicalStores() throws Exception{
 	    	  MedicalStore medicalStore = new MedicalStore();

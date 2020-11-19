@@ -62,20 +62,6 @@ class MedicineServiceImplTest {
 	    Assert.assertTrue(medicineRepository.findById(1345).isEmpty());   
   }
   
-  @Test
-   void testupdateMedicineById() throws Exception{
-
-	  Medicine medicine = new Medicine();
-			medicine.setMedicineId(134);
-			medicine.setMedicineName("crosin");
-			medicine.setMedicineCost(200);
-			
-	        Mockito.when(medicineRepository.findById(134).get()).thenReturn(medicine);
-	        medicine.setMedicineName("Calcium");
-	        Mockito.when(medicineRepository.save(medicine)).thenReturn(medicine);
-	        assertThat(medicineService.updateMedicineById(134)).isEqualTo(medicine);
-
-  }
 
   @Test 
   void testGetAllMedicines() { 
