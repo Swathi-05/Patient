@@ -1,0 +1,150 @@
+package com.cg.healthassist.doctorpatient.controller;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertNotNull;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.junit.Assert;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+import com.cg.healthassist.doctorpatient.entity.Medicine;
+import com.cg.healthassist.doctorpatient.serviceImpl.MedicineServiceImpl;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@RunWith(SpringRunner.class)
+@WebMvcTest(value = MedicineControl.class)
+class MedicineControlTest {
+
+
+	 @Autowired
+	    private MockMvc mockMvc;
+
+	    @MockBean
+	    private MedicineServiceImpl medicineService;
+
+	@Test
+	void testAddMedicine() throws Exception {
+		String URI = "/Medicine/addMedicine";
+		Medicine medicine = new Medicine();
+		medicine.setMedicineId(1001);
+		medicine.setMedicineName("crosin");
+		medicine.setMedicineCost(200);
+       String jsonInput = this.converttoJson(medicine);
+
+       Mockito.when(medicineService.addMedicine(Mockito.any(Medicine.class))).thenReturn(medicine);
+       MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.post(URI).accept(MediaType.APPLICATION_JSON).content(jsonInput).contentType(MediaType.APPLICATION_JSON))
+               .andReturn();
+       MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
+       String jsonOutput = mockHttpServletResponse.getContentAsString();
+       assertThat(jsonInput).isEqualTo(jsonOutput);
+       Assert.assertEquals(HttpStatus.OK.value(), mockHttpServletResponse.getStatus());
+	}
+
+
+    @Test
+    public void testremoveMedicineById() throws Exception{
+        String URI = "/Medicine/DeleteMedicineById/{MedicineId}";
+        Medicine medicine = new Medicine();    
+  	    medicine.setMedicineId(1345);
+  		medicine.setMedicineName("Calcium");
+  		medicine.setMedicineCost(300);
+  		
+  		String jsonInput = this.converttoJson(medicine);
+	    Mockito.when(medicineService.cancelMedicineById(1345)).thenReturn(true);
+	    MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.delete(URI, 1345).accept(MediaType.APPLICATION_JSON)).andReturn();
+	    MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
+	    String jsonOutput = mockHttpServletResponse.getContentAsString();
+	    assertNotNull(jsonOutput);
+	    //Assert.assertNotEquals(HttpStatus.OK.value(), mockHttpServletResponse.getStatus());
+    }
+
+    @Test
+    public void testUpdateMedicine() throws Exception{
+
+        String URI = "/Medicine/updateMedicineById/{MedicineId}";
+        Medicine medicine = new Medicine();
+		medicine.setMedicineId(134);
+		medicine.setMedicineName("crosin");
+		medicine.setMedicineCost(200);
+		
+		String jsonInput = this.converttoJson(medicine);
+        Mockito.when(medicineService.updateMedicineById(Mockito.any())).thenReturn(medicine);
+        MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.put(URI ,105).accept(MediaType.APPLICATION_JSON).content(jsonInput).contentType(MediaType.APPLICATION_JSON)).andReturn();
+        MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
+        String jsonOutput = mockHttpServletResponse.getContentAsString();
+        assertNotNull(jsonOutput);
+    }
+	@Test
+   public void testGetMedicineById() throws Exception{
+       String URI= "/Medicine/getMedicineById/{MedicineId}";
+       Medicine medicine = new Medicine();
+		medicine.setMedicineId(134);
+		medicine.setMedicineName("crosin");
+		medicine.setMedicineCost(200);
+       String jsonInput = this.converttoJson(medicine);
+
+       Mockito.when(medicineService.findMedicineById(Mockito.any())).thenReturn(medicine);
+       MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.get(URI, 102).accept(MediaType.APPLICATION_JSON)).andReturn();
+       MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
+       String jsonOutput = mockHttpServletResponse.getContentAsString();
+       assertThat(jsonInput).isEqualTo(jsonOutput);
+       Assert.assertEquals(HttpStatus.OK.value(), mockHttpServletResponse.getStatus());
+   }
+
+
+	@Test
+	void testGetAllMedicines() throws Exception {
+		String URI = "/Medicine/getAllMedicines";
+		 Medicine medicine = new Medicine();    
+		  medicine.setMedicineId(1345);
+			medicine.setMedicineName("Calcium");
+			medicine.setMedicineCost(300);
+		  
+			  Medicine med = new Medicine();
+			    med.setMedicineId(134);
+			    med.setMedicineName("crosin");
+			    med.setMedicineCost(200);
+	
+	      List<Medicine> medicineList = new ArrayList<>();
+	      medicineList.add(medicine);
+	      medicineList.add(med);
+	      
+       String jsonInput = this.converttoJson(medicineList);
+
+       Mockito.when(medicineService.getAllMedicines()).thenReturn(medicineList);
+       MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.get(URI).accept(MediaType.APPLICATION_JSON)).andReturn();
+       MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
+       String jsonOutput = mockHttpServletResponse.getContentAsString();
+       assertThat(jsonInput).isEqualTo(jsonOutput);
+       Assert.assertEquals(HttpStatus.OK.value(), mockHttpServletResponse.getStatus());
+
+	}
+
+	  /**
+    * Convert Object into Json String by using Jackson ObjectMapper
+    * @param ticket
+    * @return
+    * @throws JsonProcessingException
+    */
+   private String converttoJson(Object medicine) throws JsonProcessingException {
+       ObjectMapper objectMapper = new ObjectMapper();
+       return objectMapper.writeValueAsString(medicine);
+   }
+
+}
