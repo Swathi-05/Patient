@@ -46,7 +46,7 @@ class MedicalTestControlTest {
 	    
 	@Test
 	void testAddMedicalTest() throws Exception {
-		String URI = "/MedicalTest/addMedicalTest";
+		String URI = "/medicalTest/add";
 		MedicalTest medicalTest = new MedicalTest();
 		medicalTest.setMedicalTestId(524);
 		medicalTest.setMedicalTestName("BloodTest");
@@ -65,7 +65,7 @@ class MedicalTestControlTest {
 	
 	@Test
     void testGetMedicalTestById() throws Exception{
-      String URI= "/MedicalTest/getMedicalTestById/{TestId}";
+      String URI= "/medicalTest/get/{testId}";
       MedicalTest medicalTest = new MedicalTest();
       medicalTest.setMedicalTestId(5246);
       medicalTest.setMedicalTestName("BloodTest");
@@ -83,7 +83,7 @@ class MedicalTestControlTest {
 
 	@Test
 	void testGetAllMedicalTests() throws Exception {
-		 String URI = "/MedicalTest/getAllMedicalTests";
+		 String URI = "/medicalTest/getall";
 		 MedicalTest medicalTest = new MedicalTest();
 	     medicalTest.setMedicalTestId(624);
 	     medicalTest.setMedicalTestName("diabetes");

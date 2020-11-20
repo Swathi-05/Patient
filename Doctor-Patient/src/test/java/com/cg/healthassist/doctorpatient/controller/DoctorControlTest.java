@@ -43,7 +43,7 @@ class DoctorControlTest {
 	    
 	@Test
 	void testAddDoctor() throws Exception {
-		String URI = "/Doctor/addDoctor";
+		String URI = "/doctor/add";
         Doctor doctor = new Doctor();
         doctor.setDoctorId(100);
 		doctor.setDoctorName("Kumar");
@@ -63,7 +63,7 @@ class DoctorControlTest {
 	
 	@Test
      void testGetDoctorById() throws Exception{
-        String URI= "/Doctor/getDoctorById/{DoctorId}";
+        String URI= "/doctor/get/{doctorId}";
         Doctor doctor = new Doctor();
   	    doctor .setDoctorId(126);
   	    doctor .setDoctorName("Ram");
@@ -82,7 +82,7 @@ class DoctorControlTest {
 	
 	@Test
 	void testGetAllDoctors() throws Exception {
-		String URI = "/Doctor/getAllDoctors";
+		String URI = "/doctor/getall";
 		 Doctor doctor = new Doctor();
 		 doctor.setDoctorId(126);
 		 doctor.setDoctorName("Ram");

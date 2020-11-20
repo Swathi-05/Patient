@@ -47,7 +47,7 @@ class MedicalStoreControlTest {
 	    
 	@Test
 	void testAddMedicalStore() throws Exception {
-	    String URI = "/MedicalStore/addMedicalStore";
+	    String URI = "/medicalStore/add";
 		MedicalStore medicalStore = new MedicalStore();
 		medicalStore.setStoreId(564);
 		medicalStore.setStoreName("MedPlus");
@@ -66,7 +66,7 @@ class MedicalStoreControlTest {
 	
 	@Test
     void testGetMedicalStoreById() throws Exception{
-       String URI= "/MedicalStore/getMedicalStoreById/{StoreId}";
+       String URI= "/medicalStore/get/{storeId}";
        MedicalStore medicalStore = new MedicalStore();
 	   medicalStore.setStoreId(584);
 	   medicalStore.setStoreName("Apollo Pharmacy");
@@ -84,7 +84,7 @@ class MedicalStoreControlTest {
 
 	@Test
 	void testGetAllMedicalStores() throws Exception {
-		String URI = "/MedicalStore/getAllMedicalStores";
+		String URI = "/medicalStore/getall";
 		 MedicalStore medicalStore = new MedicalStore();
 		 medicalStore.setStoreId(584);
 	     medicalStore.setStoreName("Apollo Pharmacy");
