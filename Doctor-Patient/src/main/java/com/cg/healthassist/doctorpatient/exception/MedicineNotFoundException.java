@@ -1,10 +1,10 @@
 package com.cg.healthassist.doctorpatient.exception;
 
-public class OrderNotFoundException extends Exception {
+public class MedicineNotFoundException extends Exception {
 	
 private static final long serialVersionUID = 1L;
 	
-	public OrderNotFoundException(String message) {
+	public MedicineNotFoundException(String message) {
 		super(message);
 	}
 }

@@ -22,7 +22,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.cg.healthassist.doctorpatient.entity.MedicalStore;
-import com.cg.healthassist.doctorpatient.serviceImpl.MedicalStoreServiceImpl;
+import com.cg.healthassist.doctorpatient.service.MedicalStoreServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -37,7 +37,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @WebMvcTest(value = MedicalStoreControl.class)
 class MedicalStoreControlTest {
 
-	 @Autowired
+	    @Autowired
 	    private MockMvc mockMvc;
 
 	    @MockBean
@@ -47,39 +47,36 @@ class MedicalStoreControlTest {
 	    
 	@Test
 	void testAddMedicalStore() throws Exception {
-		String URI = "/MedicalStore/addMedicalStore";
+	    String URI = "/MedicalStore/addMedicalStore";
 		MedicalStore medicalStore = new MedicalStore();
 		medicalStore.setStoreId(564);
 		medicalStore.setStoreName("MedPlus");
 		medicalStore.setStoreAddress("Whitefield, Bangalore");
-       String jsonInput = this.converttoJson(medicalStore);
+        String jsonInput = this.converttoJson(medicalStore);
 
-       Mockito.when(medicalStoreService.addMedicalStore(Mockito.any(MedicalStore.class))).thenReturn(medicalStore);
-       MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.post(URI).accept(MediaType.APPLICATION_JSON).content(jsonInput).contentType(MediaType.APPLICATION_JSON))
-               .andReturn();
-       MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
-       String jsonOutput = mockHttpServletResponse.getContentAsString();
-       assertThat(jsonInput).isEqualTo(jsonOutput);
-       Assert.assertEquals(HttpStatus.OK.value(), mockHttpServletResponse.getStatus());
+        Mockito.when(medicalStoreService.addMedicalStore(Mockito.any(MedicalStore.class))).thenReturn(medicalStore);
+        MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.post(URI).accept(MediaType.APPLICATION_JSON).content(jsonInput).contentType(MediaType.APPLICATION_JSON)).andReturn();
+        MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
+        String jsonOutput = mockHttpServletResponse.getContentAsString();
+        assertThat(jsonInput).isEqualTo(jsonOutput);
+        Assert.assertEquals(HttpStatus.OK.value(), mockHttpServletResponse.getStatus());
 	}
 
 	 /** This method is to test get MedicalStore in the Controller class */
 	
 	@Test
-   public void testGetMedicalStoreById() throws Exception{
+    void testGetMedicalStoreById() throws Exception{
        String URI= "/MedicalStore/getMedicalStoreById/{StoreId}";
        MedicalStore medicalStore = new MedicalStore();
-		medicalStore.setStoreId(584);
-		medicalStore.setStoreName("Apollo Pharmacy");
-		medicalStore.setStoreAddress("Btm Layout, Bangalore");
-		 String jsonInput = this.converttoJson(medicalStore);
+	   medicalStore.setStoreId(584);
+	   medicalStore.setStoreName("Apollo Pharmacy");
+	   medicalStore.setStoreAddress("Btm Layout, Bangalore");
 
        Mockito.when(medicalStoreService.findStoreById(Mockito.any())).thenReturn(medicalStore);
        MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.get(URI, 102).accept(MediaType.APPLICATION_JSON)).andReturn();
        MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
        String jsonOutput = mockHttpServletResponse.getContentAsString();
        assertNotNull(jsonOutput);
-       Assert.assertEquals(HttpStatus.OK.value(), mockHttpServletResponse.getStatus());
        
    }
 
@@ -89,33 +86,31 @@ class MedicalStoreControlTest {
 	void testGetAllMedicalStores() throws Exception {
 		String URI = "/MedicalStore/getAllMedicalStores";
 		 MedicalStore medicalStore = new MedicalStore();
-			medicalStore.setStoreId(584);
-			medicalStore.setStoreName("Apollo Pharmacy");
-			medicalStore.setStoreAddress("Btm Layout, Bangalore");
+		 medicalStore.setStoreId(584);
+	     medicalStore.setStoreName("Apollo Pharmacy");
+		 medicalStore.setStoreAddress("Btm Layout, Bangalore");
 		  
-			MedicalStore medS = new MedicalStore();
-			medS.setStoreId(564);
-			medS.setStoreName("MedPlus");
-			medS.setStoreAddress("Whitefield, Bangalore");
+		 MedicalStore medS = new MedicalStore();
+		 medS.setStoreId(564);
+		 medS.setStoreName("MedPlus");
+		 medS.setStoreAddress("Whitefield, Bangalore");
 			
-			MedicalStore ms = new MedicalStore();
-			ms.setStoreId(568);
-			ms.setStoreName("Pharmacy");
-			ms.setStoreAddress("maratahalli, Bangalore");
+		 MedicalStore ms = new MedicalStore();
+		 ms.setStoreId(568);
+		 ms.setStoreName("Pharmacy");
+		 ms.setStoreAddress("maratahalli, Bangalore");
 		  
-	      List<MedicalStore> medicalStoreList = new ArrayList<>();
-	      medicalStoreList.add(medicalStore);
-	      medicalStoreList.add(medS);
-	      medicalStoreList.add(ms);
+	     List<MedicalStore> medicalStoreList = new ArrayList<>();
+	     medicalStoreList.add(medicalStore);
+	     medicalStoreList.add(medS);
+	     medicalStoreList.add(ms);
 	      
-       String jsonInput = this.converttoJson(medicalStoreList);
-
-       Mockito.when(medicalStoreService.getAllMedicalStores()).thenReturn(medicalStoreList);
-       MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.get(URI).accept(MediaType.APPLICATION_JSON)).andReturn();
-       MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
-       String jsonOutput = mockHttpServletResponse.getContentAsString();
-       assertNotNull(jsonOutput);
-       Assert.assertEquals(HttpStatus.OK.value(), mockHttpServletResponse.getStatus());
+         Mockito.when(medicalStoreService.getAllMedicalStores()).thenReturn(medicalStoreList);
+         MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.get(URI).accept(MediaType.APPLICATION_JSON)).andReturn();
+         MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
+         String jsonOutput = mockHttpServletResponse.getContentAsString();
+         assertNotNull(jsonOutput);
+         Assert.assertEquals(HttpStatus.OK.value(), mockHttpServletResponse.getStatus());
 
 	}
 
@@ -125,6 +120,7 @@ class MedicalStoreControlTest {
     * @return
     * @throws JsonProcessingException
     */
+	
    private String converttoJson(Object medicalStore) throws JsonProcessingException {
        ObjectMapper objectMapper = new ObjectMapper();
        return objectMapper.writeValueAsString(medicalStore);

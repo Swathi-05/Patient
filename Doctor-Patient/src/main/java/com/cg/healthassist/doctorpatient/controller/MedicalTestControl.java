@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.healthassist.doctorpatient.entity.MedicalTest;
 import com.cg.healthassist.doctorpatient.exception.MedicalTestNotFoundException;
-import com.cg.healthassist.doctorpatient.serviceImpl.MedicalTestServiceImpl;
+import com.cg.healthassist.doctorpatient.service.MedicalTestServiceImpl;
 
 /** This class is for MedicalTest Controller 
  * 
@@ -21,25 +21,25 @@ import com.cg.healthassist.doctorpatient.serviceImpl.MedicalTestServiceImpl;
  * */
 
 @RestController
-@RequestMapping("/MedicalTest")
+@RequestMapping("/medicalTest")
 
 public class MedicalTestControl {
 	
 	@Autowired
 	 MedicalTestServiceImpl testService;
 	
-	@PostMapping("/addMedicalTest")
+	@PostMapping("/add")
 	public MedicalTest addMedicalTest(@RequestBody MedicalTest medicalTest)
 	{
 		return testService.addMedicalTest(medicalTest);
 	}
-	@GetMapping("/getMedicalTestById/{TestId}")
-	public MedicalTest getMedicalTestById(@PathVariable Integer TestId) throws MedicalTestNotFoundException 
+	@GetMapping("/get/{testId}")
+	public MedicalTest getMedicalTestById(@PathVariable Integer testId) throws MedicalTestNotFoundException  
 	{
-		return testService.findMedicalTestById(TestId);
+		return testService.findMedicalTestById(testId);
 	}
-	@GetMapping("/getAllMedicalTests")
+	@GetMapping("/getall")
 	public List<MedicalTest> getAllMedicalTests(){
-		return(List<MedicalTest>) testService.getAllMedicalTests();
+		return testService.getAllMedicalTests();
 	}
 }

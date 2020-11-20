@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -12,11 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import com.cg.healthassist.doctorpatient.entity.MedicalTest;
 import com.cg.healthassist.doctorpatient.exception.MedicalTestNotFoundException;
 import com.cg.healthassist.doctorpatient.repository.MedicalTestRepository;
-import com.cg.healthassist.doctorpatient.serviceImpl.MedicalTestServiceImpl;
+
+/** This class is for MedicialTest Service Implementation Test
+ * 
+ * @author Swathi
+ * 
+ **/
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -28,6 +31,8 @@ class MedicalTestServiceImplTest {
     @Autowired
     private MedicalTestServiceImpl medicalTestService;
 
+    /** This method is to test add medicalTest in the Service implementation class **/
+    
 	@Test
 	void testaddMedicalTest() {
 		MedicalTest medicalTest = new MedicalTest();
@@ -39,39 +44,42 @@ class MedicalTestServiceImplTest {
         assertThat(medicalTestService.addMedicalTest(medicalTest)).isEqualTo(medicalTest);
 	}
 
+	/** This method is to test get medicalTest by id in the Service implementation class **/
+	
   @Test 
   void testGetMedicalTestById() throws MedicalTestNotFoundException { 
-	  MedicalTest medicalTest = new MedicalTest();
+	    MedicalTest medicalTest = new MedicalTest();
 	    medicalTest.setMedicalTestId(5246);
 		medicalTest.setMedicalTestName("BloodTest");
 		medicalTest.setMedicalTestCost(800);
-		
-
 		assertThat(medicalTest.getMedicalTestId()).isEqualTo(5246);
   }
  
+  /** This method is to test getAll medicalStore in the Service implementation class **/
+  
   @Test 
   void testGetAllMedicalTests() { 
-	  MedicalTest medicalTest = new MedicalTest();
-	        medicalTest.setMedicalTestId(624);
-			medicalTest.setMedicalTestName("diabetes");
-			medicalTest.setMedicalTestCost(2000);
+	     MedicalTest medicalTest = new MedicalTest();
+	     medicalTest.setMedicalTestId(624);
+	     medicalTest.setMedicalTestName("diabetes");
+		 medicalTest.setMedicalTestCost(2000);
 
-	  MedicalTest medT = new MedicalTest();
-	        medT.setMedicalTestId(5246);
-	        medT.setMedicalTestName("BloodTest");
-	        medT.setMedicalTestCost(800);
-	  MedicalTest mt = new MedicalTest();
-	      mt.setMedicalTestId(524);
-	      mt.setMedicalTestName("BloodTest");
-	      mt.setMedicalTestCost(800);
+	     MedicalTest medT = new MedicalTest();
+	     medT.setMedicalTestId(5246);
+	     medT.setMedicalTestName("BloodTest");
+	     medT.setMedicalTestCost(800);
+	     
+	     MedicalTest mt = new MedicalTest();
+	     mt.setMedicalTestId(524);
+	     mt.setMedicalTestName("BloodTest");
+	     mt.setMedicalTestCost(800);
 
-      List<MedicalTest> medicalTestList = new ArrayList<>();
-      medicalTestList.add(medicalTest);
-      medicalTestList.add(medT);
-      medicalTestList.add(mt);
+         List<MedicalTest> medicalTestList = new ArrayList<>();
+         medicalTestList.add(medicalTest);
+         medicalTestList.add(medT);
+         medicalTestList.add(mt);
 
-      Mockito.when(medicalTestRepository.findAll()).thenReturn(medicalTestList);
-      assertThat(medicalTestService.getAllMedicalTests()).isEqualTo(medicalTestList);
+         Mockito.when(medicalTestRepository.findAll()).thenReturn(medicalTestList);
+         assertThat(medicalTestService.getAllMedicalTests()).isEqualTo(medicalTestList);
   }
 }

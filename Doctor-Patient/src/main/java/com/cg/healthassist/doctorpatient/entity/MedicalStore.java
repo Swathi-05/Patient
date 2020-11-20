@@ -1,7 +1,6 @@
 package com.cg.healthassist.doctorpatient.entity;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,13 +19,12 @@ public class MedicalStore implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	@Id
-	//@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column
-		private int StoreId;
+	private int storeId;
 	@Column
-		private String StoreName;
+	private String storeName;
 	@Column
-		private String StoreAddress;
+	private String storeAddress;
 	
 	public MedicalStore() {
 		super();
@@ -35,41 +33,47 @@ public class MedicalStore implements Serializable{
 
     public MedicalStore(int storeId, String storeName, String storeAddress) {
 	    super();
-	    this.StoreId = storeId;
-	    this.StoreName = storeName;
-	    this.StoreAddress = storeAddress;
+	    this.storeId = storeId;
+	    this.storeName = storeName;
+	    this.storeAddress = storeAddress;
     }
 
+
 	public int getStoreId() {
-		return StoreId;
+		return storeId;
 	}
+
 
 	public void setStoreId(int storeId) {
-		StoreId = storeId;
+		this.storeId = storeId;
 	}
+
 
 	public String getStoreName() {
-		return StoreName;
+		return storeName;
 	}
+
 
 	public void setStoreName(String storeName) {
-		StoreName = storeName;
+		this.storeName = storeName;
 	}
+
 
 	public String getStoreAddress() {
-		return StoreAddress;
+		return storeAddress;
 	}
 
+
 	public void setStoreAddress(String storeAddress) {
-		StoreAddress = storeAddress;
+		this.storeAddress = storeAddress;
 	}
 
 
 	@Override
 	public String toString() {
-		return "MedicalStore [StoreId=" + StoreId + ", StoreName=" + StoreName + ", StoreAddress=" + StoreAddress + "]";
+		return "MedicalStore [storeId=" + storeId + ", storeName=" + storeName + ", storeAddress=" + storeAddress + "]";
 	}
-
-
+	
 }
+
 		

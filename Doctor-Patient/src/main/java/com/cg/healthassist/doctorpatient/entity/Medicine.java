@@ -1,10 +1,8 @@
 package com.cg.healthassist.doctorpatient.entity;
 
-import java.io.Serializable;
-import javax.persistence.Column;
+import java.io.Serializable;import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**this is entity class for medicine with getters and setters
@@ -20,13 +18,12 @@ public class Medicine implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	@Id
-	//@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column
-		private int medicineId;
+	private int medicineId;
 	@Column
-		private String medicineName;
+	private String medicineName;
 	@Column
-		private long medicineCost;
+	private long medicineCost;
 	
 	public Medicine() {
 		super();

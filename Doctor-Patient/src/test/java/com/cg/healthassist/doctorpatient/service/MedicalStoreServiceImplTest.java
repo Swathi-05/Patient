@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -12,17 +11,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import com.cg.healthassist.doctorpatient.entity.MedicalStore;
 import com.cg.healthassist.doctorpatient.exception.MedicalStoreNotFoundException;
 import com.cg.healthassist.doctorpatient.repository.MedicalStoreRepository;
-import com.cg.healthassist.doctorpatient.serviceImpl.MedicalStoreServiceImpl;
 
+/** This class is for MedicialStore Service Implementation Test
+ * 
+ * @author Swathi
+ * 
+ **/
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 class MedicalStoreServiceImplTest {
-
 
     @MockBean
     private MedicalStoreRepository medicalStoreRepository;
@@ -30,6 +31,8 @@ class MedicalStoreServiceImplTest {
     @Autowired
     private MedicalStoreServiceImpl medicalStoreService;
 
+    /** This method is to test add medicalStore in the Service implementation class **/
+    
 	@Test
 	void testaddMedicalStore() {
 		MedicalStore medicalStore = new MedicalStore();
@@ -41,6 +44,8 @@ class MedicalStoreServiceImplTest {
         assertThat(medicalStoreService.addMedicalStore(medicalStore)).isEqualTo(medicalStore);
 	}
 
+	 /** This method is to test get medidcalStore by id in the Service implementation class **/
+	
   @Test 
   void testGetStoreById() throws MedicalStoreNotFoundException { 
 	  MedicalStore medicalStore = new MedicalStore();
@@ -50,8 +55,9 @@ class MedicalStoreServiceImplTest {
 		
 		assertThat(medicalStore.getStoreId()).isEqualTo(584);
   }
- 
 
+  /** This method is to test getAll medidcalStore in the Service implementation class **/
+  
   @Test 
   void testGetAllMedicalStores() { 
 	  MedicalStore medicalStore = new MedicalStore();

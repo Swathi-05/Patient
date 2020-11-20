@@ -1,11 +1,8 @@
 package com.cg.healthassist.doctorpatient.entity;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -16,64 +13,71 @@ import javax.persistence.Table;
  * */
 
 @Entity
-@Table(name = "Doctor")
-
+@Table(name = "DOCTOR")
 public class Doctor implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    
 	@Id
 	@Column
-		private int DoctorId;
+	private int doctorId;
 	@Column
-		private String DoctorName;
+	private String doctorName;
 	@Column
-		private String DoctorSpeciality;
+	private String doctorSpeciality;
 	@Column
-		private int Experience;
-	
+	private int doctorExperience;
+
 	public Doctor(){
 		super();
 	}
 	
-		public Doctor(int doctorId, String doctorName, String doctorSpeciality, int experience) {
+		public Doctor(int doctorId, String doctorName, String doctorSpeciality, int doctorExperience) {
 			super();
-			this.DoctorId = doctorId;
-			this.DoctorName = doctorName;
-			this.DoctorSpeciality = doctorSpeciality;
-			this.Experience = experience;
+			this.doctorId = doctorId;
+			this.doctorName = doctorName;
+			this.doctorSpeciality = doctorSpeciality;
+			this.doctorExperience = doctorExperience;
 		}
 
+
 		public int getDoctorId() {
-			return DoctorId;
+			return doctorId;
 		}
+
 		public void setDoctorId(int doctorId) {
-			DoctorId = doctorId;
+			this.doctorId = doctorId;
 		}
+
 		public String getDoctorName() {
-			return DoctorName; 
+			return doctorName;
 		}
+
 		public void setDoctorName(String doctorName) {
-			DoctorName = doctorName;
+			this.doctorName = doctorName;
 		}
+
 		public String getDoctorSpeciality() {
-			return DoctorSpeciality;
+			return doctorSpeciality;
 		}
+
 		public void setDoctorSpeciality(String doctorSpeciality) {
-			DoctorSpeciality = doctorSpeciality;
+			this.doctorSpeciality = doctorSpeciality;
 		}
-		public int getExperience() {
-			return Experience;
+
+		public int getDoctorExperience() {
+			return doctorExperience;
 		}
-		public void setExperience(int experience) {
-			Experience = experience;
+
+		public void setDoctorExperience(int doctorExperience) {
+			this.doctorExperience = doctorExperience;
 		}
 
 		@Override
 		public String toString() {
-			return "Doctor [DoctorId=" + DoctorId + ", DoctorName=" + DoctorName + ", DoctorSpeciality="
-					+ DoctorSpeciality + ", Experience=" + Experience + "]";
+			return "Doctor [doctorId=" + doctorId + ", doctorName=" + doctorName + ", doctorSpeciality="
+					+ doctorSpeciality + ", doctorExperience=" + doctorExperience + "]";
 		}
-
+		
 }

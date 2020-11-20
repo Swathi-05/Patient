@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.healthassist.doctorpatient.entity.MedicalStore;
 import com.cg.healthassist.doctorpatient.exception.MedicalStoreNotFoundException;
-import com.cg.healthassist.doctorpatient.serviceImpl.MedicalStoreServiceImpl;
+import com.cg.healthassist.doctorpatient.service.MedicalStoreServiceImpl;
 
 /** This class is for MedicalStore Controller 
  * 
@@ -21,26 +21,26 @@ import com.cg.healthassist.doctorpatient.serviceImpl.MedicalStoreServiceImpl;
  * */
 
 @RestController
-@RequestMapping("/MedicalStore")
+@RequestMapping("/medicalStore")
 
 public class MedicalStoreControl {
 	
 	@Autowired
 	MedicalStoreServiceImpl storeService;
 	
-	@PostMapping("/addMedicalStore")
+	@PostMapping("/add")
 	public MedicalStore addMedicalStore(@RequestBody MedicalStore medicalStore)
 	{
 		return storeService.addMedicalStore(medicalStore);
 	}
-	@GetMapping("/getMedicalStoreById/{StoreId}")
-	public MedicalStore getStoreById(@PathVariable Integer StoreId) throws MedicalStoreNotFoundException 
+	@GetMapping("/get/{storeId}")
+	public MedicalStore getStoreById(@PathVariable Integer storeId) throws MedicalStoreNotFoundException
 	{
-		return storeService.findStoreById(StoreId);
+		return storeService.findStoreById(storeId);
 	}
-	@GetMapping("/getAllMedicalStores")
+	@GetMapping("/getall")
 	public List<MedicalStore> getAllMedicalStores(){
-		return(List<MedicalStore>) storeService.getAllMedicalStores();
+		return storeService.getAllMedicalStores();
 	}
 	
 	

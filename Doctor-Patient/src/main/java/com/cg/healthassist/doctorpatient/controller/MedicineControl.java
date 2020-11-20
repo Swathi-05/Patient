@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.healthassist.doctorpatient.entity.Medicine;
-import com.cg.healthassist.doctorpatient.exception.OrderNotFoundException;
-import com.cg.healthassist.doctorpatient.serviceImpl.MedicineServiceImpl;
+import com.cg.healthassist.doctorpatient.exception.MedicineNotFoundException;
+import com.cg.healthassist.doctorpatient.service.MedicineServiceImpl;
 
 /** This class is for Medicine Controller 
  * 
@@ -23,39 +23,39 @@ import com.cg.healthassist.doctorpatient.serviceImpl.MedicineServiceImpl;
  * */
 
 @RestController
-@RequestMapping("/Medicine")
+@RequestMapping("/medicine")
 
 public class MedicineControl {
 	
 	@Autowired
 	 MedicineServiceImpl medicineService;
 	
-	@PostMapping("/addMedicine")
-	public Medicine addMedicine(@RequestBody Medicine MedicineId)
+	@PostMapping("/add")
+	public Medicine addMedicine(@RequestBody Medicine medicineId)
 	{
-		return medicineService.addMedicine(MedicineId);
+		return medicineService.addMedicine(medicineId);
 	}
 	
-	@PutMapping("/updateMedicineById/{MedicineId}")
-	public Medicine updateMedicineById(@PathVariable Integer medicineId)
+	@PutMapping("/update/{medicineId}")
+	public Medicine updateMedicineById(@PathVariable Integer medicineId,String medicineName) throws MedicineNotFoundException
 	{
-		return medicineService.updateMedicineById(medicineId);
+		return medicineService.updateMedicineById(medicineId,medicineName);
 	}
 	
-	@DeleteMapping("DeleteMedicineById/{MedicineId}")
-	public boolean removeMedicineById(@PathVariable int MedicineId) {
-		return medicineService.cancelMedicineById(MedicineId);
+	@DeleteMapping("delete/{medicineId}")
+	public boolean removeMedicineById(@PathVariable int medicineId) throws MedicineNotFoundException {
+		return medicineService.cancelMedicineById(medicineId);
 	}
 
-	@GetMapping("/getMedicineById/{MedicineId}")
-	public Medicine getMedicineById(@PathVariable Integer MedicineId) throws OrderNotFoundException 
+	@GetMapping("/get/{medicineId}")
+	public Medicine getMedicineById(@PathVariable Integer medicineId) throws MedicineNotFoundException 
 	{
-		return medicineService.findMedicineById(MedicineId);
+		return medicineService.findMedicineById(medicineId);
 	}
 	
-	@GetMapping("/getAllMedicines")
+	@GetMapping("/getall")
 	public List<Medicine> getAllMedicines(){
-        return (List<Medicine>) medicineService.getAllMedicines();
+        return medicineService.getAllMedicines();
 	}
 	
 }
