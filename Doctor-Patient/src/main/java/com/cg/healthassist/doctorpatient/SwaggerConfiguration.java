@@ -31,7 +31,7 @@ public class SwaggerConfiguration {
 	/** method to represent the path to be documented */
 	@SuppressWarnings("unchecked")
 	private Predicate<String> pathsToBeDocumented() {
-		return or(ant("/doctor/**"));
+		return or(ant("/api/**"));
 	}
 	/** method to represent the title, version and license */
 	private ApiInfo apiInfo() {

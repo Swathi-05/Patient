@@ -33,12 +33,14 @@ public class MedicineServiceImpl implements MedicineService{
 	
 	@Override
 	public boolean cancelMedicineById(Integer medicineId) throws MedicineNotFoundException {
+		boolean flag=false;
 		medicineRepository.deleteById(medicineId);
-        Medicine medicine = medicineRepository.findById(medicineId).orElseThrow(() -> new MedicineNotFoundException("Medicine not found for this id :: " + medicineId));
-        if(null == medicine){
-            return true;
+        Medicine medicine = medicineRepository.findById(medicineId).orElseThrow(() -> new MedicineNotFoundException(" Medicine not found for this id  " + medicineId));
+        if(null == medicine) {
+             flag = true;
         }
-        return false;
+		return flag;
+		
 	}
 
 	/** This method is to update medicine details By Id 

@@ -1,11 +1,11 @@
 package com.cg.healthassist.doctorpatient.entity;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 /**this is entity class for medical test with getters and setters*
  * 
@@ -20,11 +20,14 @@ public class MedicalTest implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Column
+	@Column(nullable = false)   
+	@NotNull(message="Please provide Id value")
 	private int medicalTestId;
-	@Column
+	@Column(nullable = false)   
+	@NotNull(message="Please provide medical test name")
 	private String medicalTestName;
-	@Column
+	@Column(nullable = false)   
+	@NotNull(message="Please provide medical test cost")
 	private long medicalTestCost;
 	
 	public MedicalTest() {

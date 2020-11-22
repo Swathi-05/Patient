@@ -2,7 +2,10 @@ package com.cg.healthassist.doctorpatient.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,20 +24,20 @@ import com.cg.healthassist.doctorpatient.service.MedicalStoreServiceImpl;
  * */
 
 @RestController
-@RequestMapping("/medicalStore")
-
+@RequestMapping("/api/medicalStore")
+@Validated
 public class MedicalStoreControl {
 	
 	@Autowired
 	MedicalStoreServiceImpl storeService;
 	
 	@PostMapping("/add")
-	public MedicalStore addMedicalStore(@RequestBody MedicalStore medicalStore)
+	public MedicalStore addMedicalStore(@Valid @RequestBody MedicalStore medicalStore)
 	{
 		return storeService.addMedicalStore(medicalStore);
 	}
 	@GetMapping("/get/{storeId}")
-	public MedicalStore getStoreById(@PathVariable Integer storeId) throws MedicalStoreNotFoundException
+	public MedicalStore getStoreById(@Valid @PathVariable Integer storeId) throws MedicalStoreNotFoundException
 	{
 		return storeService.findStoreById(storeId);
 	}

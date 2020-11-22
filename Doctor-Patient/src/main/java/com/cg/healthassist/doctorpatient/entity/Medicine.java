@@ -4,6 +4,7 @@ import java.io.Serializable;import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 /**this is entity class for medicine with getters and setters
  * 
@@ -18,11 +19,14 @@ public class Medicine implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Column
+	@Column(nullable = false)   
+	@NotNull(message="Please provide Id value")
 	private int medicineId;
-	@Column
+	@Column(nullable = false)   
+	@NotNull(message="Please provide medicine name")
 	private String medicineName;
-	@Column
+	@Column(nullable = false)   
+	@NotNull(message="Please provide medicine cost")
 	private long medicineCost;
 	
 	public Medicine() {

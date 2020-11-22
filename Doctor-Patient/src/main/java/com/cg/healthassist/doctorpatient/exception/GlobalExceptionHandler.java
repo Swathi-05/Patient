@@ -19,32 +19,32 @@ import org.springframework.web.context.request.WebRequest;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 	@ExceptionHandler(DoctorNotFoundException.class)
-	public ResponseEntity<?> resourceNotFoundException(DoctorNotFoundException ex, WebRequest request) {
+	public ResponseEntity<Object> resourceNotFoundException(DoctorNotFoundException ex, WebRequest request) {
 		ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
 		return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
 	}
 	
 	@ExceptionHandler(MedicalStoreNotFoundException.class)
-	public ResponseEntity<?> resourceNotFoundException(MedicalStoreNotFoundException ex, WebRequest request) {
+	public ResponseEntity<Object> resourceNotFoundException(MedicalStoreNotFoundException ex, WebRequest request) {
 		ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
 		return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(MedicalTestNotFoundException.class)
-	public ResponseEntity<?> resourceNotFoundException(MedicalTestNotFoundException ex, WebRequest request) {
+	public ResponseEntity<Object> resourceNotFoundException(MedicalTestNotFoundException ex, WebRequest request) {
 		ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
 		return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
 	}
 	
 	@ExceptionHandler(MedicineNotFoundException.class)
-	public ResponseEntity<?> resourceNotFoundException(MedicineNotFoundException ex, WebRequest request) {
+	public ResponseEntity<Object> resourceNotFoundException(MedicineNotFoundException ex, WebRequest request) {
 		ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
 		return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
 	}
 	
 	@ExceptionHandler(Exception.class)
-	public ResponseEntity<?> globleExcpetionHandler(Exception ex, WebRequest request) {
-		ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
+	public ResponseEntity<Object> globleExcpetionHandler(Exception ex, WebRequest request) {
+		ErrorDetails errorDetails = new ErrorDetails(new Date(), "Invalid message", request.getDescription(false));
 		return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }

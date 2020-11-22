@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 /** this is entity class for doctor with getters and setters
  * 
@@ -20,13 +21,17 @@ public class Doctor implements Serializable{
 	
     
 	@Id
-	@Column
+	@Column(nullable = false)   
+	@NotNull(message="Please provide Id value")
 	private int doctorId;
-	@Column
+	@Column(nullable = false)   
+	@NotNull(message="Please provide doctor name")
 	private String doctorName;
-	@Column
+	@Column(nullable = false)   
+	@NotNull(message="Please provide doctor speciality")
 	private String doctorSpeciality;
-	@Column
+	@Column(nullable = false)   
+	@NotNull(message="Please provide doctor experience")
 	private int doctorExperience;
 
 	public Doctor(){

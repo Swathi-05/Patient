@@ -56,11 +56,12 @@ class MedicineRepositoryTest {
 			    Medicine medicine = new Medicine();    
 				medicine.setMedicineId(1345);
 				medicine.setMedicineName("Calcium");
+				
 			    medicine.setMedicineCost(300);		
 				Medicine med = testEntityManager.persist(medicine);	       
 				testEntityManager.remove(med);
 				List<Medicine> m = (List<Medicine>) medicineRepository.findAll();
-				Assert.assertEquals(m.size(), 0);
+				Assert.assertEquals(0,m.size());
 			}
 				 
 			 /** This method is to test update medicine by id in the repository class */
